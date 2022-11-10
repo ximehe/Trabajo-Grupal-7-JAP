@@ -1,5 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('btnGet1').addEventListener('click', () => { //Buscador de registro
         let id = document.getElementById('inputGet1Id').value;
         if (id != "" || id > 0) { //Si el id es distinto de vacio o mayor de 0 
@@ -33,35 +33,36 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     })
 
-    document.getElementById('btnPost').addEventListener('click',()=>{
+    document.getElementById('btnPost').addEventListener('click', () => {
 
-        let nombre =document.getElementById('inputPostNombre').value;
-        let appellido =document.getElementById('inputPostApellido').value;
+        let nombre = document.getElementById('inputPostNombre').value;
+        let appellido = document.getElementById('inputPostApellido').value;
 
-        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/',{
-            headers: {"Content-Type":"application/json; charset=utf-8"},
+        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/', {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
             method: 'POST',
             body: JSON.stringify({
                 name: nombre,
                 lastname: appellido
-            }) 
+            })
         })
-        .then(response => response.json())
-        .then(data =>{
-            console.log(data)
-        })
-        .catch((error)=> {
-            console.log(error);
-    
-        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch((error) => {
+                console.log(error);
+
+            })
     });
 
-    document.getElementById('saveChanges').addEventListener('click',()=>{
 
-        let id =document.getElementById('inputPutId').value;
 
-        let nombre =document.getElementById('editName').value;
-        let appellido =document.getElementById('editApellido').value;
+    document.getElementById('saveChanges').addEventListener('click', () => {
+
+        let id = document.getElementById('inputPutId').value;
+        let nombre = document.getElementById('editName').value;
+        let appellido = document.getElementById('editApellido').value;
         let data = {};
         if (nombre) {
             data.name = nombre;
@@ -71,56 +72,39 @@ document.addEventListener("DOMContentLoaded", ()=>{
         };
 
 
-        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/'+id,{
-            headers: {"Content-Type":"application/json; charset=utf-8"},
+        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/' + id, {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
             method: 'PUT',
-            body: JSON.stringify(data) 
+            body: JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(data =>{
-            console.log(data);
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
 
-       
+
     });
 
-    document.getElementById('btnDelete').addEventListener('click',()=> {
 
-        let id =document.getElementById('inputDelete').value;
-    
-        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/' + id,{
-            headers: {"Content-Type":"application/json; charset=utf-8"},
+    document.getElementById('btnDelete').addEventListener('click', () => {
+
+        let id = document.getElementById('inputDelete').value;
+
+        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/' + id, {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
             method: 'DELETE',
-            })
+        })
             .then(response => response.json())
-            .then(data =>{
+            .then(data => {
                 console(data);
             })
             .catch((error) => {
                 console.log(error)
             })
-    
-    });  
 
-    document.getElementById('btnDelete').addEventListener('click',()=> {
-
-        let id =document.getElementById('inputDelete').value;
-    
-        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/' + id,{
-            headers: {"Content-Type":"application/json; charset=utf-8"},
-            method: 'PUT',
-            })
-            .then(response => response.json())
-            .then(data =>{
-                console(data);
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    
-    });  
+    });
 
 })
