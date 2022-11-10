@@ -1,4 +1,4 @@
-
+  
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('btnGet1').addEventListener('click', () => { //Buscador de registro
         let id = document.getElementById('inputGet1Id').value;
