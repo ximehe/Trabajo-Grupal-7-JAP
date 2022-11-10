@@ -2,17 +2,27 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('btnGet1').addEventListener('click', () => { //Buscador de registro
         let id = document.getElementById('inputGet1Id').value;
+
         if (id != "" || id > 0) { //Si el id es distinto de vacio o mayor de 0 
             fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/' + id) //Llama al fetch con el id ingresado en el input
                 .then(response => response.json())
-                .then(data => document.getElementById('results').innerHTML =
+                .then(data => {
+                    
+                    console.log(data.id)
+                    if (data.id===undefined){
+                        document.getElementById('results').innerHTML = `<p> No existe ningún registro con ese ID </p> `
+                    } else {
+                        document.getElementById('results').innerHTML =
                     `
                         <li>
                             <p>ID: ${data.id}</p>
                             <p>NAME: ${data.name}</p>
                             <p>LASTNAME: ${data.lastname}</p>
                         </li>
-                    `) //Se genera un elemento de la lista con el id, el nombre y el apellido del id ingresado
+                    ` //Se genera un elemento de la lista con el id, el nombre y el apellido del id ingresado
+                    }
+                    
+                    })
 
         } else if (id === "") { //Si el id es vacio
             fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/') //LLama al fetch
@@ -56,34 +66,41 @@ document.addEventListener("DOMContentLoaded", () => {
             })
     });
 
+   
 
+    HabilitarModal();
 
+   
     document.getElementById('saveChanges').addEventListener('click', () => {
 
         let id = document.getElementById('inputPutId').value;
-        let nombre = document.getElementById('editName').value;
-        let appellido = document.getElementById('editApellido').value;
-        let data = {};
-        if (nombre) {
-            data.name = nombre;
+
+        if (id != "") {
+            let nombre = document.getElementById('editName').value;
+            let appellido = document.getElementById('editApellido').value;
+            let data = {};
+            if (nombre) {
+                data.name = nombre;
+            }
+            if (appellido) {
+                data.lastname = appellido
+            };
+    
+    
+            fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/' + id, {
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                method: 'PUT',
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
-        if (appellido) {
-            data.lastname = appellido
-        };
-
-
-        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/' + id, {
-            headers: { "Content-Type": "application/json; charset=utf-8" },
-            method: 'PUT',
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        
 
 
     });
@@ -108,3 +125,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 })
+
+function HabilitarModal(){
+    if ((document.getElementById('inputPutId').value)===""){
+
+        document.getElementById("btnPut").disabled = true;
+    } else
+    {
+        document.getElementById("btnPut").disabled = false;
+    }
+}

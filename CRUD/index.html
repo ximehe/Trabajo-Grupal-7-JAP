@@ -42,7 +42,7 @@
                         <div class="border p-3 my-3 position-relative" id="put-box">
                             <h6>Modificar registro</h6>
                             <input type="number" id="inputPutId" class="form-control"
-                                placeholder="ID del registro a modificar">
+                                placeholder="ID del registro a modificar" min="1" onchange="HabilitarModal()">
                             <button id="btnPut" class="btn btn-warning position-absolute bottom-0 mb-3"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Modificar</button>
@@ -80,8 +80,8 @@
                         </legend>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="saveChanges" data-bs-dismiss="modal">Guardar</button>
                     </div>
                 </div>
             </div>
