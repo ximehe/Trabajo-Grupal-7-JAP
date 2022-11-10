@@ -32,7 +32,7 @@
                             <h6>Ingresar nuevo registro</h6>
                             <input type="text" id="inputPostNombre" class="form-control my-1" placeholder="Nombre">
                             <input type="text" id="inputPostApellido" class="form-control my-1" placeholder="Apellido">
-                            <button id="btnPost" class="btn btn-success position-absolute bottom-0 mb-3" >
+                            <button id="btnPost" class="btn btn-success position-absolute bottom-0 mb-3">
                                 Agregar</button>
                         </div>
                     </div>
@@ -43,7 +43,8 @@
                             <h6>Modificar registro</h6>
                             <input type="number" id="inputPutId" class="form-control"
                                 placeholder="ID del registro a modificar">
-                            <button id="btnPut" class="btn btn-warning position-absolute bottom-0 mb-3" >
+                            <button id="btnPut" class="btn btn-warning position-absolute bottom-0 mb-3"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Modificar</button>
                         </div>
                     </div>
@@ -51,7 +52,7 @@
                         <div class="border p-3 my-3 position-relative" id="delete-box">
                             <h6>Eliminar registro</h6>
                             <input type="number" id="inputDelete" class="form-control" placeholder="ID a eliminar">
-                            <button id="btnDelete" class="btn btn-danger position-absolute bottom-0 mb-3" >
+                            <button id="btnDelete" class="btn btn-danger position-absolute bottom-0 mb-3">
                                 Borrar</button>
                         </div>
                     </div>
@@ -61,6 +62,31 @@
                 <ul class="border bg-dark text-white my-3 list-group list-group-flush" id="results"></ul>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar registro</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <legend> Nombre:
+                            <input type="text" name="nombre" id="editName">
+                        </legend>
+                        <legend> Apellido:
+                            <input type="text" name="apellido" id="editApellido">
+                        </legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
     <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a

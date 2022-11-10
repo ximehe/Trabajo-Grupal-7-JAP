@@ -56,11 +56,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
         })
     });
 
-    document.getElementById('btnPut').addEventListener('click',()=>{
+    document.getElementById('saveChanges').addEventListener('click',()=>{
 
         let id =document.getElementById('inputPutId').value;
-        let nombre =document.getElementById('inputPostNombre').value;
-        let appellido =document.getElementById('inputPostApellido').value;
+
+        let nombre =document.getElementById('editName').value;
+        let appellido =document.getElementById('editApellido').value;
         let data = {};
         if (nombre) {
             data.name = nombre;
@@ -70,14 +71,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
         };
 
 
-        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/',{
+        fetch('https://6363eb3a8a3337d9a2ec6c3b.mockapi.io/users/'+id,{
             headers: {"Content-Type":"application/json; charset=utf-8"},
             method: 'PUT',
             body: JSON.stringify(data) 
         })
         .then(response => response.json())
         .then(data =>{
-            console(data);
+            console.log(data);
         })
         .catch((error) => {
             console.log(error)
